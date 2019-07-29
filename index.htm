@@ -1,0 +1,467 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
+
+    <!-- Sundae Times Tumblr theme designed by Dented Nerd May 2014 -->
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
+    <link rel="icon" href="{Favicon}"/>
+    <link href='http://fonts.googleapis.com/css?family=Satisfy|Fjalla+One|Lusitana' rel='stylesheet' type='text/css'>
+    <meta name="description" content="{MetaDescription}"/>
+
+    <style type="text/css">
+    * {
+      padding: 0px;
+      margin: 0px; }
+
+    img {
+      border: 0px; }
+
+    /*LAYOUT*/ 
+    body {
+      background:#ffe url({image:Background image}) center fixed no-repeat;
+      font: normal 20px Lusitana, serif;
+      letter-spacing:-1px;
+      color: {color:Text};
+      line-height:28px; }
+
+    #wrapper {
+      width: 800px;
+      min-height:750px;
+      margin:0 auto; }
+
+    header {
+      position:relative;
+      border-bottom:double 3px #ddc;
+      margin:40px 0px 0 0px;
+      padding:20px 0px 0px 0px;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: flex-end; }
+      
+    h1, h1 a {
+      width:100%;
+      height:90px;
+      overflow:hidden;
+      padding:0;
+      margin:-10px 0 5px 5px;
+      font: normal 80px Satisfy, cursive;
+      line-height:90px;
+      color:#acc;
+      text-shadow:1px 1px 0px #ffe, 3px 3px 0px #eed; }
+
+    aside {
+      position:absolute;
+      top:0;
+      right:-100;
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      background:#faa;
+      display:flex;
+      flex-flow:column nowrap;
+      justify-content:center;
+      align-items:center;
+      text-align:right; }
+
+    aside ul {
+      text-align:center;
+      list-style-type:none; }
+
+    aside ul li:before {
+      content:""; }
+
+    aside ul li {
+      font:normal 20px Fjalla One, sans-serif;
+      color:#ffe;
+      text-transform:uppercase;
+      line-height:24px; }
+
+    aside ul li a {
+        color:#ffe;
+        text-shadow:0px 2px 0px #d88; }
+
+    #description {
+      text-align:left;
+      padding:5px 0 0 0;
+      color: #faa;
+      height:80px;
+      text-shadow:1px 1px 0px #eed; }
+
+    /*POST LAYOUT*/
+    article {
+        background:#acc;
+        width:800px;
+        margin:80px auto;
+        padding:50px 0;
+        height:auto !important; }
+        
+    nav {
+        display:flex; 
+        flex-flow:row nowrap; 
+        justify-content:space-around; 
+        align-items:center; 
+        background:#acc;
+        width:800px;
+        margin:80px auto;
+        font:normal 30px Fjalla One, sans-serif; 
+        padding:20px 0;
+        height:auto !important; }
+        
+    nav a {
+        color:#fe9; 
+        text-shadow:0px 2px 4px #9bb; }
+        
+    img.bustImage, img.albumArt, .photoset {
+        width:700px;
+        max-width:700px !important;
+        margin:0px 50px; }
+
+    section {
+        width:500px;
+        margin:0px auto;
+        padding:40px;
+        background:#ffc;
+        box-shadow:0px 2px 4px #9bb;}
+
+    div.player {
+      background:#fe9;
+      margin:0 0 20px 0;
+      padding:20px 0;
+      width:500px;
+      text-align:center; }
+
+    iframe {
+        margin:0px 50px; }
+
+    /*TEXT STYLES*/
+    p {
+        margin: 20px 0 0 0; }
+
+    p:first-child {
+        margin:0; }
+        
+    a {
+        text-decoration:none;
+        color:#977; }
+
+    h2 {
+        background:#fe9;
+        text-align:center;
+        margin:0px auto;
+        font: bold 40px Fjalla One, sans-serif;
+        letter-spacing:-2px;
+        color:#977;
+        width:660px;
+        padding:40px 20px;
+        text-shadow:1px 1px 0px #fe9, 3px 3px 0px #ed8;
+        box-shadow:0px 2px 4px #9bb; }
+
+    h2:first-letter {
+        font:bold 60px Satisfy, cursive; 
+        line-height:40px;
+        text-shadow:1px 1px 0px #fe9, 3px 3px 0px #ed8; }
+
+    h2 a {
+        text-decoration:none;
+        color:#faa; }
+
+    h2.quote {
+        font:bold 50px Satisfy, cursive; 
+        line-height:40px;
+        text-shadow:1px 1px 0px #fe9, 3px 3px 0px #ed8; }
+
+    h2 a:hover {
+        color:#fbb; }
+        
+    /*BLOCKQUOTES*/
+    blockquote {
+        background:#faa;
+        border-left:solid 9px #e99;
+        font-size:18px;
+        line-height:18px;
+        padding:9px;
+        margin:10px 0; }
+        
+    blockquote blockquote {
+        background:#fe9;
+        border-left:solid 8px #ed8;
+        font-size:16px
+        line-height:16px;
+        padding:8px; }
+        
+    blockquote blockquote blockquote {
+        background:#faa;
+        border-left:solid 7px #e99;
+        font-size:14px;
+        line-height:14px;
+        padding:7px;
+        letter-spacing:0px; }
+        
+    blockquote blockquote blockquote blockquote {
+        background:#fe9;
+        border-left:solid 6px #ed8;
+        font-size:12px;
+        line-height:12px;
+        padding:6px; }
+        
+    blockquote blockquote blockquote blockquote blockquote {
+        background:#faa;
+        border-left:solid 5px #e99;
+        font-size:10px;
+        line-height:10px;
+        padding:5px; }
+        
+    blockquote p {
+        margin: 18px 0 0 0; }
+
+    blockquote p:first-child {
+        margin:0; }
+
+    blockquote a {
+        font-style:normal; }
+    blockquote img {
+        width:95%;  }
+
+      ul, ol {
+      margin:40px;}
+
+    /*CHAT POSTS*/
+    .chat {
+      width:600px;
+      margin:20px auto 0px auto;}
+
+    .chat ol.convo {
+      width:600px;
+      margin:0 auto; }
+
+    .chat .convo li {
+      display: block;
+      width:400px;
+      position: relative;
+      padding: 14px;
+      margin-bottom: 30px;
+      border-radius: 5px;
+      background: #ffc;
+      box-shadow:0px 2px 4px #9bb;}
+
+    .chat .convo li:nth-child(even):after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 12px;
+      border-top: 20px solid #ffc;
+      border-left: 18px solid transparent; }
+
+    .chat .convo li:nth-child(odd) {
+      margin:0 0 30px 175px;
+      background:#fe9;
+      text-align:right;
+      color:#997;}
+
+    .chat .convo li:nth-child(odd):after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      right:12px;
+      border-top: 20px solid #fe9;
+      border-right: 18px solid transparent; }
+
+    .chat .name {
+      font: normal 20px Fjalla One, sans-serif;
+      text-transform:uppercase;
+      line-height: 20px; }
+
+    /*NOTES*/
+    div.notes {
+      width:500px;
+      margin:-40px auto 0 auto;
+      padding:0; }
+
+    div.notes ul {
+      display:inline;
+      margin:0 0 20px 0;
+      padding:0 0 20px 0; }
+
+    div.notes ul li {
+      display:inline-block;
+      background:#faa; 
+      margin:0 5px 5px 0;
+      padding:0 5px;
+      border-left:solid 5px #e99; }
+
+    div.notes ul li a {
+      color:#000; }
+
+    div.notes ol.notes {
+      list-style-type: none;
+      margin:20px 0 0 0;
+      padding:0;  }
+
+    div.notes ol.notes li.note {
+      margin:0px;
+      padding: 0 0 20px 0;
+      line-height:64px;  }
+          
+    div.notes ol.notes li.note a {
+      color:#acc;
+      text-shadow:1px 1px 0px #eed; }
+          
+    div.notes ol.notes li.note:first-child {
+      padding: 0 0 20px 0; }
+          
+    div.notes ol.notes li.note .answer_content {
+      font-weight: normal; }
+          
+    div.notes ol.notes li.note img.avatar {
+      vertical-align:-24px;
+      margin-right:5px;}
+          
+    div.notes ol.notes li.note blockquote {
+      margin:20px 0;}
+          
+    div.notes ol.notes li.note blockquote a {
+      color:#000;
+      text-shadow:none; }
+
+    {CustomCSS}
+    </style>
+  </head>
+
+<body>
+  <div id="wrapper">
+    <header>
+      <h1>
+        <a href="{BlogURL}">
+          {Title}
+        </a>
+      </h1>
+      <aside>
+        <ul>
+          <li><a href="/archive">Archive</a></li> 
+          {block:AskEnabled}
+          <li><a href="/ask">{AskLabel}</a></li>
+          {/block:AskEnabled}
+          <li><a href="{RSS}">RSS</a></li>
+          {block:HasPages}{block:Pages}
+          <li><a href="{URL}">{Label}</a></li>
+          {/block:Pages}{/block:HasPages}
+          <li><a href="http://sundaetimes-theme.tumblr.com">Theme</a></li>
+        </ul>
+      </aside>
+    </header>
+
+    <div id="description">
+      {Description}
+    </div>
+
+    {block:Posts}
+    <article>
+
+    {block:Text}
+    {block:Title}<h2>{Title}</h2>{/block:Title}
+    <section>
+    {Body}
+    {/block:Text}
+        
+    {block:Photo}
+    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="bustImage" />
+    {block:Caption}<section>{Caption}{/block:Caption}
+    {/block:Photo}
+        
+    {block:Photoset}
+    {Photoset-700}
+    {block:Caption}<section>{Caption}{/block:Caption}
+    {/block:Photoset}
+          
+    {block:Quote}
+    <h2 class="quote">&#10077;{Quote}&#10078;</h2>
+    {block:Source}<section>{Source}{/block:Source}
+    {/block:Quote}
+          
+    {block:Link}
+    <h2><a href="{URL}">{Name}</a></h2>
+    {block:Description}<section>{Description}{/block:Description}
+    {/block:Link}
+          
+    {block:Answer}
+    <h2>{Question}</h2>
+    <section>
+    <p align="right">-- a question from {Asker}{block:RebloggedFrom} to {Answerer}{/block:RebloggedFrom}</p>
+    {Answer}
+    {/block:Answer}
+        
+    {block:Chat}
+    <div class="chat">
+    <ol class="convo">
+    {block:Lines}
+    <li class="{Alt} user_{UserNumber}">
+    {block:Label}<span class="name">{Label}</span>{/block:Label}
+    {Line}
+    </li>
+    {/block:Lines}
+    </ol>
+    </div>
+    {/block:Chat}
+          
+    {block:Audio}
+    {block:TrackName}<h2>{TrackName}{/block:TrackName} {block:Artist}by {Artist}</h2>{/block:Artist}
+    {block:AlbumArt}<img src="{AlbumArtURL}" class="albumArt" />{/block:AlbumArt}
+    <section>
+    <div class="player">
+    {block:AudioPlayer}{AudioPlayer}{/block:AudioPlayer}
+    {block:AudioEmbed}{AudioEmbed-640}{/block:AudioEmbed}
+    </div>
+    {block:Caption}{Caption}{/block:Caption}
+    {/block:Audio}
+
+    {block:Video}
+    {Video-700}
+    {block:Caption}<section>{Caption}{/block:Caption}
+    {/block:Video}
+
+    <!--BLOCK SOURCE LINKS-->
+    {block:ContentSource}
+    <!-- {SourceURL}{block:SourceLogo}<img src="{BlackLogoURL}"
+    width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
+    {/block:SourceLogo}
+    {block:NoSourceLogo}{SourceLink}{/block:NoSourceLogo} -->
+    {/block:ContentSource}
+    {block:ReblogParent}{/block:ReblogParent}
+
+    </section>
+    </article>
+
+    {block:PermalinkPage}
+    <div class="notes">
+    {block:HasTags}
+    <ul class="tags">
+    {block:Tags}
+    <li><a href="{TagURL}">{Tag}</a></li>
+    {/block:Tags}
+    </ul>
+    {/block:HasTags}
+    {block:PostNotes}{PostNotes-64}{/block:PostNotes}
+    </div>   
+    {/block:PermalinkPage}
+      
+    {/block:Posts}
+
+    {block:Pagination}
+    <nav>
+    {block:PreviousPage}
+    <a href="{PreviousPage}">newer posts</a>
+    {/block:PreviousPage}
+    {block:NextPage}
+    <a href="{NextPage}">older posts</a>
+    {/block:NextPage}
+    </nav>
+    {/block:Pagination}
+
+    </div>
+  </div>
+
+</body>
+</html>
