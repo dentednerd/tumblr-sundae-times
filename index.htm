@@ -21,15 +21,22 @@
     /* -----LAYOUT----- */
     body {
       background:#ffe;
-      font: normal 20px Lusitana, serif;
+      font-family: 'Lusitana', serif;
+      font-size: 20px;
       letter-spacing: -1px;
       color: #333;
       line-height: 28px;
     }
 
+    @media (max-width: 767px) {
+      body {
+        font-size: 30px;
+      }
+    }
+
     #wrapper {
-      width: 800px;
-      min-height: 750px;
+      max-width: 800px;
+      min-height: 100vh;
       margin: 0 auto;
     }
 
@@ -37,20 +44,34 @@
       position: relative;
       margin: 0;
       padding: 20px 0 0;
+      max-width: 100%;
+    }
+    
+    @media (max-width: 767px) {
+      header {
+          padding: 20px 1rem 0;
+      }
     }
 
     h1,
     h1 a {
       border-bottom: double 3px #ddc;
       width: 100%;
-      height: 90px;
+      height: calc(100px - 0.5rem);
       overflow: hidden;
       padding: 0 0 0.5rem 0;
-      font: normal 4rem Satisfy, cursive;
+      font-family: 'Satisfy', cursive;
+      font-size: 4rem; 
       line-height: 100px;
       color: #acc;
       text-shadow: 1px 1px 0px #ffe, 3px 3px 0px #eed, 5px 5px 0px #ffe;
       padding-left: 3px;
+    }
+
+    @media (max-width: 767px) {
+      h1, h1 a {
+        max-width: calc(100% - 200px);
+      }
     }
 
     aside {
@@ -67,6 +88,12 @@
       align-items: center;
       text-align: right;
     }
+    
+    @media (max-width: 767px) {
+      aside {
+        right: 1rem;
+      }
+    }
 
     aside ul {
       text-align: center;
@@ -78,7 +105,8 @@
     }
 
     aside ul li {
-      font: normal 20px Fjalla One, sans-serif;
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 1.25rem;
       color: #ffe;
       text-transform: uppercase;
       line-height: 24px;
@@ -92,20 +120,33 @@
     #description {
       width: calc(100% - 200px);
       text-align: left;
-      padding: 5px 0 0 0;
+      padding: 0.5rem 0 0 0;
       color: #faa;
-      min-height: 80px;
+      min-height: 5rem;
       height: auto;
       text-shadow: 1px 1px 0px #eed;
+    }
+    
+    @media (max-width: 767px) {
+      #description {
+        padding: 0.5rem 1rem 0;
+      }
     }
 
     /*POST LAYOUT*/
     article {
       background: #acc;
-      width: 800px;
+      max-width: 800px;
       margin: 80px auto;
       padding: 50px 0;
       height: auto !important;
+    }
+    
+    @media (max-width: 767px) {
+      article {
+        width: 100%;
+        max-width: 100%;
+      }
     }
     
     article:first-of-type {
@@ -118,9 +159,10 @@
       justify-content: space-around;
       align-items: center;
       background: #acc;
-      width: 800px;
+      max-width: 800px;
       margin: 80px auto;
-      font: normal 30px Fjalla One, sans-serif;
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 30px;
       padding: 20px 0;
       height: auto !important;
     }
@@ -131,11 +173,18 @@
     }
 
     img.single-photo,
-    img.albumArt,
+    img.album-art,
     .photoset {
       width: 700px;
-      max-width: 700px !important;
       margin: 0px 50px;
+    }
+    
+    @media (max-width: 767px) {
+      img.single-photo,
+      img.album-art,
+      .photoset {
+        width: calc(100% - 100px);
+      }
     }
 
     section {
@@ -176,17 +225,29 @@
       background: #fe9;
       text-align: center;
       margin: 0px auto;
-      font: bold 40px Fjalla One, sans-serif;
+      font-family: 'Fjalla One', sans-serif;
+      font-weight: bold;
+      font-size: 40px; 
       letter-spacing: -2px;
       color: #977;
-      width: 660px;
+      width: 100%;
+      max-width: 660px;
       padding: 40px 20px;
       text-shadow: 1px 1px 0px #fe9, 3px 3px 0px #ed8;
       box-shadow: 0px 2px 4px #9bb;
     }
+    
+    @media (max-width: 767px) {
+      h2 {
+        width: calc(100% - 100px);
+        max-width: calc(100% - 100px);
+      }
+    }
 
     h2:first-letter {
-      font: bold 60px Satisfy, cursive;
+      font-family: 'Satisfy', cursive;
+      font-weight: bold;
+      font-size: 60px;
       line-height: 40px;
       text-shadow: 1px 1px 0px #fe9, 3px 3px 0px #ed8;
     }
@@ -197,7 +258,9 @@
     }
 
     h2.quote {
-      font: bold 50px Satisfy, cursive;
+      font-family: 'Satisfy', cursive;
+      font-weight: bold;
+      font-size: 50px;
       line-height: 40px;
       text-shadow: 1px 1px 0px #fe9, 3px 3px 0px #ed8;
     }
@@ -210,7 +273,6 @@
     blockquote {
       background: #faa;
       border-left: solid 9px #e99;
-      font-size: 18px;
       line-height: 18px;
       padding: 9px;
       margin: 10px 0;
@@ -219,7 +281,6 @@
     blockquote blockquote {
       background: #fe9;
       border-left: solid 8px #ed8;
-      font-size: 16px;
       line-height: 16px;
       padding: 8px;
     }
@@ -227,7 +288,6 @@
     blockquote blockquote blockquote {
       background: #faa;
       border-left: solid 7px #e99;
-      font-size: 14px;
       line-height: 14px;
       padding: 7px;
       letter-spacing: 0px;
@@ -236,7 +296,6 @@
     blockquote blockquote blockquote blockquote {
       background: #fe9;
       border-left: solid 6px #ed8;
-      font-size: 12px;
       line-height: 12px;
       padding: 6px;
     }
@@ -244,7 +303,6 @@
     blockquote blockquote blockquote blockquote blockquote {
       background: #faa;
       border-left: solid 5px #e99;
-      font-size: 10px;
       line-height: 10px;
       padding: 5px;
     }
@@ -318,7 +376,8 @@
     }
 
     .chat .name {
-      font: normal 20px Fjalla One, sans-serif;
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 20px;
       text-transform: uppercase;
       line-height: 20px;
     }
@@ -507,7 +566,7 @@
           {block:TrackName}{TrackName} {/block:TrackName}{block:Artist}by {Artist}{/block:Artist}
         </h2>
         {block:AlbumArt}
-          <img src="{AlbumArtURL}" class="albumArt" />
+          <img src="{AlbumArtURL}" class="album-art" />
         {/block:AlbumArt}
         <section>
           <div class="player">
