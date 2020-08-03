@@ -1,12 +1,7 @@
 <html>
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
-
-  <!-- Sundae Times Tumblr theme designed by Dented Nerd May 2014 -->
-  <!-- last updated July 2019 -->
-
   <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}" />
   <link rel="icon" href="{Favicon}" />
   <link href='https://fonts.googleapis.com/css?family=Satisfy|Fjalla+One|Lusitana' rel='stylesheet' type='text/css'>
@@ -128,7 +123,7 @@
       text-shadow: 0px 2px 4px #9bb;
     }
 
-    img.bustImage,
+    img.single-photo,
     img.albumArt,
     .photoset {
       width: 700px;
@@ -384,6 +379,8 @@
       color: #000;
       text-shadow: none;
     }
+
+    {CustomCSS}
   </style>
 </head>
 
@@ -422,12 +419,24 @@
       {/block:Text}
 
       {block:Photo}
-        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="bustImage" />
+          {LinkOpenTag}
+            <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="single-photo" />
+          {LinkCloseTag}
         {block:Caption}
           <section>
             {Caption}
         {/block:Caption}
       {/block:Photo}
+
+      {block:Panorama}
+          <li class="post panorama">
+              {LinkOpenTag}
+                  <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+              {LinkCloseTag}{block:Caption}
+                  <div class="caption">{Caption}</div>
+              {/block:Caption}
+          </li>
+      {/block:Panorama}
 
       {block:Photoset}
         {Photoset-700}
@@ -470,61 +479,61 @@
           {Answer}
         {/block:Answer}
 
-        {block:Chat}
-          <div class="chat">
-            <ol class="convo">
-              {block:Lines}
-                <li class="{Alt} user_{UserNumber}">
-                  {block:Label}
-                    <span class="name">
-                      {Label}
-                    </span>
-                  {/block:Label}
-                  {Line}
-                </li>
-              {/block:Lines}
-            </ol>
+      {block:Chat}
+        <div class="chat">
+          <ol class="convo">
+            {block:Lines}
+              <li class="{Alt} user_{UserNumber}">
+                {block:Label}
+                  <span class="name">
+                    {Label}
+                  </span>
+                {/block:Label}
+                {Line}
+              </li>
+            {/block:Lines}
+          </ol>
+        </div>
+      {/block:Chat}
+
+      {block:Audio}
+        <h2>
+          {block:TrackName}{TrackName} {/block:TrackName}{block:Artist}by {Artist}{/block:Artist}
+        </h2>
+        {block:AlbumArt}
+          <img src="{AlbumArtURL}" class="albumArt" />
+        {/block:AlbumArt}
+        <section>
+          <div class="player">
+            {block:AudioPlayer}{AudioPlayer}{/block:AudioPlayer}
+            {block:AudioEmbed}{AudioEmbed-640}{/block:AudioEmbed}
           </div>
-        {/block:Chat}
-
-        {block:Audio}
-          <h2>
-            {block:TrackName}{TrackName} {/block:TrackName}{block:Artist}by {Artist}{/block:Artist}
-          </h2>
-          {block:AlbumArt}
-            <img src="{AlbumArtURL}" class="albumArt" />
-          {/block:AlbumArt}
-          <section>
-            <div class="player">
-              {block:AudioPlayer}{AudioPlayer}{/block:AudioPlayer}
-              {block:AudioEmbed}{AudioEmbed-640}{/block:AudioEmbed}
-            </div>
-            {block:Caption}
-              {Caption}
-            {/block:Caption}
-        {/block:Audio}
-
-        {block:Video}
-          {Video-700}
           {block:Caption}
-            <section>
-              {Caption}
+            {Caption}
           {/block:Caption}
-        {/block:Video}
+      {/block:Audio}
 
-        <!--BLOCK SOURCE LINKS-->
-        {block:ContentSource}
-          <!--
-          {SourceURL}
-            {block:SourceLogo}
-              <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
-            {/block:SourceLogo}
-            {block:NoSourceLogo}
-              {SourceLink}
-            {/block:NoSourceLogo}
-          -->
-        {/block:ContentSource}
-        {block:ReblogParent}{/block:ReblogParent}
+      {block:Video}
+        {Video-700}
+        {block:Caption}
+          <section>
+            {Caption}
+        {/block:Caption}
+      {/block:Video}
+
+      <!--BLOCK SOURCE LINKS-->
+      {block:ContentSource}
+        <!--
+        {SourceURL}
+          {block:SourceLogo}
+            <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
+          {/block:SourceLogo}
+          {block:NoSourceLogo}
+            {SourceLink}
+          {/block:NoSourceLogo}
+        -->
+      {/block:ContentSource}
+      {block:ReblogParent}{/block:ReblogParent}
 
       </section>
     </article>
@@ -562,7 +571,5 @@
     {/block:Pagination}
 
   </main>
-
 </body>
-
 </html>
