@@ -397,15 +397,14 @@
       <h1><a href="{BlogURL}">{Title}</a></h1>
       <aside>
         <ul>
+          {block:HasPages}{block:Pages}
+          <li><a href="{URL}">{Label}</a></li>
+          {/block:Pages}{/block:HasPages}
           <li><a href="/archive">Archive</a></li>
           {block:AskEnabled}
           <li><a href="/ask">{AskLabel}</a></li>
           {/block:AskEnabled}
-          <li><a href="{RSS}">RSS</a></li>
-          {block:HasPages}{block:Pages}
-          <li><a href="{URL}">{Label}</a></li>
-          {/block:Pages}{/block:HasPages}
-          <li><a href="http://sundaetimes-theme.tumblr.com">Theme</a></li>
+          <li><a href="https://sundaetimes-theme.tumblr.com">Theme</a></li>
         </ul>
       </aside>
     </header>
