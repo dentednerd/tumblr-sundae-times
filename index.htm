@@ -1,640 +1,711 @@
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}" />
-  <link rel="icon" href="{Favicon}" />
-  <link href='https://fonts.googleapis.com/css?family=Satisfy|Fjalla+One|Lusitana' rel='stylesheet' type='text/css'>
-  <meta name="description" content="{MetaDescription}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}" />
+    <link rel="icon" href="{Favicon}" />
+    <link href='https://fonts.googleapis.com/css?family=Satisfy|Fjalla+One|Lusitana' rel='stylesheet' type='text/css'>
+    <meta name="description" content="{MetaDescription}" />
 
-  <style type="text/css">
-    /* -----RESETS----- */
-    * {
-      padding: 0px;
-      margin: 0px;
+    <style type="text/css">
+/* -----RESETS----- */
+    *,
+    *::before,
+    *::after {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
     }
 
     img {
-      border: 0px;
+        border: 0;
+    }
+
+    :root {
+        --header-height: 200px;
     }
 
     /* -----LAYOUT----- */
     body {
-      background:#ffe;
-      font-family: 'Lusitana', serif;
-      font-size: 20px;
-      letter-spacing: -1px;
-      color: #333;
-      line-height: 28px;
+        background:#ffe;
+        font-family: 'Lusitana', serif;
+        font-size: 20px;
+        line-height: normal;
+        letter-spacing: -1px;
+        color: #333;
     }
 
-    @media (max-width: 767px) {
-      body {
-        font-size: 30px;
-      }
-    }
-
-    #wrapper {
-      max-width: 800px;
-      min-height: 100vh;
-      margin: 0 auto;
+    main {
+        width: 100%;
+        max-width: 800px;
+        margin: 1rem auto !important;
+        padding-inline: 1rem;
     }
 
     header {
-      position: relative;
-      margin: 0;
-      padding: 20px 0 0;
-      max-width: 100%;
-    }
-    
-    @media (max-width: 767px) {
-      header {
-          padding: 20px 1rem 0;
-      }
+        display: grid;
+        grid-template-columns: 1fr min(25vw, var(--header-height));
+        width: 100% !important;
     }
 
-    h1,
-    h1 a {
-      border-bottom: double 3px #ddc;
-      width: 100%;
-      height: calc(100px - 0.5rem);
-      overflow: hidden;
-      padding: 0 0 0.5rem 0;
-      font-family: 'Satisfy', cursive;
-      font-size: 4rem; 
-      line-height: 100px;
-      color: #acc;
-      text-shadow: 1px 1px 0px #ffe, 3px 3px 0px #eed, 5px 5px 0px #ffe;
-      padding-left: 3px;
-    }
+    h1 {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-end;
+        height: min(12.5vw, calc(var(--header-height) / 2));
+        width: 100%;
+        max-width: calc(800px - 2rem);
+        padding: 0 0 0.5rem 0.5rem;
 
-    @media (max-width: 767px) {
-      h1, h1 a {
-        max-width: calc(100% - 200px);
-      }
+        font-family: 'Satisfy', cursive;
+        font-size: min(4rem, 8vw);
+        overflow: hidden;
+
+        color: #acc;
+        text-shadow: 1px 1px 0px #ffe, 3px 3px 0px #eed, 5px 5px 0px #ffe;
+
+        border-bottom: double 3px #ddc;
     }
 
     aside {
-      position: absolute;
-      top: 0.5rem;
-      right: 0;
-      border-radius: 50%;
-      width: 200px;
-      height: 200px;
-      background: #faa;
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: center;
-      align-items: center;
-      text-align: right;
-    }
-    
-    @media (max-width: 767px) {
-      aside {
-        right: 1rem;
-      }
+        border-radius: 50%;
+        width: min(25vw, var(--header-height));
+        height: min(25vw, var(--header-height));
+        background: #faa;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        text-align: right;
     }
 
-    aside ul {
-      text-align: center;
-      list-style-type: none;
-    }
 
-    aside ul li:before {
-      content: "";
-    }
+        aside ul {
+            display: block;
+            text-align: center;
+            list-style-type: none;
+        }
 
-    aside ul li {
-      font-family: 'Fjalla One', sans-serif;
-      font-size: 1.25rem;
-      color: #ffe;
-      text-transform: uppercase;
-      line-height: 24px;
-    }
-
-    aside ul li a {
-      color: #ffe;
-      text-shadow: 0px 2px 0px #d88;
-    }
+            aside ul li a {
+                font-family: 'Fjalla One', sans-serif;
+                font-size: min(4vw, 1.25rem);
+                color: #ffe;
+                text-transform: uppercase;
+                line-height: 24px;
+                color: #ffe;
+                text-shadow: 0px 2px 0px #d88, 0 0 8px #d88;
+            }
 
     #description {
-      width: calc(100% - 200px);
-      text-align: left;
-      padding: 0.5rem 0 0 0;
-      color: #faa;
-      min-height: 5rem;
-      height: auto;
-      text-shadow: 1px 1px 0px #eed;
-    }
-    
-    @media (max-width: 767px) {
-      #description {
-        padding: 0.5rem 1rem 0;
-      }
+        width: 100%;
+        height: min(12.5vw, calc(var(--header-height) / 2));
+        text-align: left;
+        color: #faa;
+        text-shadow: 1px 1px 0px #eed;
+        margin-top: 1rem;
     }
 
     /*POST LAYOUT*/
     article {
-      background: #acc;
-      max-width: 800px;
-      margin: 80px auto;
-      padding: 50px 0;
-      height: auto !important;
-    }
-    
-    @media (max-width: 767px) {
-      article {
-        width: 100%;
+        background: #acc;
         max-width: 100%;
-      }
+        margin: 4rem auto;
+        padding: 2rem 0;
+        height: auto !important;
     }
-    
-    article:first-of-type {
-      margin-top: 40px;
-    }
+
+        article:first-of-type {
+            margin-top: 2rem;
+        }
 
     nav {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-around;
-      align-items: center;
-      background: #acc;
-      max-width: 800px;
-      margin: 80px auto;
-      font-family: 'Fjalla One', sans-serif;
-      font-size: 30px;
-      padding: 20px 0;
-      height: auto !important;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: center;
+        background: #acc;
+        max-width: 100%;
+        margin: 4rem auto;
+        font-family: 'Fjalla One', sans-serif;
+        font-size: 1.5rem;
+        padding: 1rem 0;
+        height: auto !important;
     }
 
-    nav a {
-      color: #fe9;
-      text-shadow: 0px 2px 4px #9bb;
-    }
+        nav a {
+            color: #fe9;
+            text-shadow: 0px 2px 4px #9bb;
+        }
 
     img.single-photo,
     img.album-art,
     .photoset {
-      width: 700px;
-      margin: 0px 50px;
-    }
-    
-    @media (max-width: 767px) {
-      img.single-photo,
-      img.album-art,
-      .photoset {
-        width: calc(100% - 100px);
-      }
+        width: calc(100% - 4rem);
+        margin: 0px 2rem;
     }
 
     section {
-      width: 500px;
-      margin: 0px auto;
-      padding: 40px;
-      background: #ffc;
-      box-shadow: 0px 2px 4px #9bb;
+        width: calc(100% - 4rem);
+        margin: 0px auto;
+        padding: 2rem;
+        background: #ffc;
+        box-shadow: 0px 2px 4px #9bb;
     }
+
+        @media(min-width: 768px) {
+            section {
+                width: calc(100% - 8rem);
+            }
+        }
 
     div.player {
-      background: #fe9;
-      margin: 0 0 20px 0;
-      padding: 20px 0;
-      width: 500px;
-      text-align: center;
+        background: #fe9;
+        margin: 0 0 1rem 0;
+        padding: 1rem 0;
+        width: 500px;
+        text-align: center;
     }
 
-    iframe {
-      margin: 0px 50px;
+    figure {
+        width: 100%;
+    }
+
+    figure iframe {
+        width: 100%;
     }
 
     /*TEXT STYLES*/
     p {
-      margin: 20px 0 0 0;
+        margin-top: 1rem;
     }
 
-    p:first-child {
-      margin: 0;
-    }
+        p:first-child {
+            margin-top: 0;
+        }
 
     a {
-      text-decoration: none;
-      color: #977;
+        text-decoration: none;
+        color: #977;
     }
 
     h2 {
-      background: #fe9;
-      text-align: center;
-      margin: 0px auto;
-      font-family: 'Fjalla One', sans-serif;
-      font-weight: bold;
-      font-size: 40px; 
-      letter-spacing: -2px;
-      color: #977;
-      width: 100%;
-      max-width: 660px;
-      padding: 40px 20px;
-      text-shadow: 1px 1px 0px #fe9, 3px 3px 0px #ed8;
-      box-shadow: 0px 2px 4px #9bb;
-    }
-    
-    @media (max-width: 767px) {
-      h2 {
-        width: calc(100% - 100px);
-        max-width: calc(100% - 100px);
-      }
+        background: #fe9;
+        text-align: center;
+        margin: 0px auto;
+
+        font-family: 'Fjalla One', sans-serif;
+        font-weight: bold;
+        font-size: 2rem;
+        letter-spacing: -2px;
+        color: #977;
+
+        width: calc(100% - 4rem);
+        padding: 2rem 1rem;
+
+        text-shadow: 1px 1px 0px #fe9, 3px 3px 0px #ed8;
+        box-shadow: 0px 2px 4px #9bb;
     }
 
-    h2:first-letter {
-      font-family: 'Satisfy', cursive;
-      font-weight: bold;
-      font-size: 60px;
-      line-height: 40px;
-      text-shadow: 1px 1px 0px #fe9, 3px 3px 0px #ed8;
-    }
+        h2:first-letter {
+            font-family: 'Satisfy', cursive;
+            font-weight: bold;
+            font-size: 60px;
+            line-height: 40px;
+            text-shadow: 1px 1px 0px #fe9, 3px 3px 0px #ed8;
+        }
 
-    h2 a {
-      text-decoration: none;
-      color: #faa;
-    }
+        h2 a {
+            text-decoration: none;
+            color: #faa;
+        }
 
-    h2.quote {
-      font-family: 'Satisfy', cursive;
-      font-weight: bold;
-      font-size: 50px;
-      line-height: 40px;
-      text-shadow: 1px 1px 0px #fe9, 3px 3px 0px #ed8;
-    }
+            h2 a:hover {
+                color: #fbb;
+            }
 
-    h2 a:hover {
-      color: #fbb;
+        h2.quote {
+            font-family: 'Satisfy', cursive;
+            font-weight: bold;
+            font-size: 2.5rem;
+            line-height: 1;
+            text-shadow: 1px 1px 0px #fe9, 3px 3px 0px #ed8;
+        }
+
+    .reblogged-by {
+        display: block;
+        background: #faa;
+        padding: 0.5rem;
     }
 
     /*BLOCKQUOTES*/
     blockquote {
-      background: #faa;
-      border-left: solid 9px #e99;
-      line-height: 18px;
-      padding: 9px;
-      margin: 10px 0;
+        background: #faa;
+        border-left: solid 9px #e99;
+        padding: 0.5rem;
+        margin: 0.5rem 0;
     }
 
-    blockquote blockquote {
-      background: #fe9;
-      border-left: solid 8px #ed8;
-      line-height: 16px;
-      padding: 8px;
-    }
+        blockquote p {
+            margin: 1rem 0 0 0;
+        }
 
-    blockquote blockquote blockquote {
-      background: #faa;
-      border-left: solid 7px #e99;
-      line-height: 14px;
-      padding: 7px;
-      letter-spacing: 0px;
-    }
-
-    blockquote blockquote blockquote blockquote {
-      background: #fe9;
-      border-left: solid 6px #ed8;
-      line-height: 12px;
-      padding: 6px;
-    }
-
-    blockquote blockquote blockquote blockquote blockquote {
-      background: #faa;
-      border-left: solid 5px #e99;
-      line-height: 10px;
-      padding: 5px;
-    }
-
-    blockquote p {
-      margin: 18px 0 0 0;
-    }
-
-    blockquote p:first-child {
-      margin: 0;
-    }
+            blockquote p:first-child {
+                margin: 0;
+            }
 
     blockquote a {
-      font-style: normal;
+        font-style: normal;
     }
 
     blockquote img {
-      width: 95%;
+        width: 95%;
     }
 
     ul,
     ol {
-      margin: 40px;
+        margin: 2rem;
     }
 
     /*CHAT POSTS*/
     .chat {
-      width: 600px;
-      margin: 20px auto 0px auto;
+        width: 600px;
+        margin: 1rem auto 0 auto;
     }
 
-    .chat ol.convo {
-      width: 600px;
-      margin: 0 auto;
-    }
+        .chat .convo {
+            width: 600px;
+            margin: 0 auto;
+        }
 
-    .chat .convo li {
-      display: block;
-      width: 400px;
-      position: relative;
-      padding: 14px;
-      margin-bottom: 30px;
-      border-radius: 5px;
-      background: #ffc;
-      box-shadow: 0px 2px 4px #9bb;
-    }
+            .chat .convo li {
+                display: block;
+                width: 400px;
+                position: relative;
+                padding: 14px;
+                margin-bottom: 30px;
+                border-radius: 5px;
+                background: #ffc;
+                box-shadow: 0px 2px 4px #9bb;
+            }
 
-    .chat .convo li:nth-child(even):after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 12px;
-      border-top: 20px solid #ffc;
-      border-left: 18px solid transparent;
-    }
+                .chat .convo li:nth-child(even):after {
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    left: 12px;
+                    border-top: 20px solid #ffc;
+                    border-left: 18px solid transparent;
+                }
 
-    .chat .convo li:nth-child(odd) {
-      margin: 0 0 30px 175px;
-      background: #fe9;
-      text-align: right;
-      color: #997;
-    }
+                .chat .convo li:nth-child(odd) {
+                    margin: 0 0 30px 175px;
+                    background: #fe9;
+                    text-align: right;
+                    color: #997;
+                }
 
-    .chat .convo li:nth-child(odd):after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      right: 12px;
-      border-top: 20px solid #fe9;
-      border-right: 18px solid transparent;
-    }
+                .chat .convo li:nth-child(odd):after {
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    right: 12px;
+                    border-top: 20px solid #fe9;
+                    border-right: 18px solid transparent;
+                }
 
-    .chat .name {
-      font-family: 'Fjalla One', sans-serif;
-      font-size: 20px;
-      text-transform: uppercase;
-      line-height: 20px;
-    }
+        .chat .name {
+            font-family: 'Fjalla One', sans-serif;
+            font-size: 20px;
+            text-transform: uppercase;
+            line-height: 20px;
+        }
 
     /*NOTES*/
     div.notes {
-      width: 500px;
-      margin: -40px auto 0 auto;
-      padding: 0;
+        width: 500px;
+        margin: -40px auto 0 auto;
+        padding: 0;
     }
 
-    div.notes ul {
-      display: inline;
-      margin: 0 0 20px 0;
-      padding: 0 0 20px 0;
-    }
+        div.notes ul {
+            display: inline;
+            margin: 0 0 20px 0;
+            padding: 0 0 20px 0;
+        }
 
-    div.notes ul li {
-      display: inline-block;
-      background: #faa;
-      margin: 0 5px 5px 0;
-      padding: 0 5px;
-      border-left: solid 5px #e99;
-    }
+            div.notes ul li {
+                display: inline-block;
+                background: #faa;
+                margin: 0 5px 5px 0;
+                padding: 0 5px;
+                border-left: solid 5px #e99;
+            }
 
-    div.notes ul li a {
-      color: #000;
-    }
+                div.notes ul li a {
+                    color: #000;
+                }
 
-    div.notes ol.notes {
-      list-style-type: none;
-      margin: 20px 0 0 0;
-      padding: 0;
-    }
+        div.notes ol.notes {
+            list-style-type: none;
+            margin: 20px 0 0 0;
+            padding: 0;
+        }
 
-    div.notes ol.notes li.note {
-      margin: 0px;
-      padding: 0 0 20px 0;
-      line-height: 64px;
-    }
+            div.notes ol.notes li.note {
+                margin: 0px;
+                padding: 0 0 20px 0;
+                line-height: 64px;
+            }
 
-    div.notes ol.notes li.note a {
-      color: #acc;
-      text-shadow: 1px 1px 0px #eed;
-    }
+                div.notes ol.notes li.note a {
+                    color: #acc;
+                    text-shadow: 1px 1px 0px #eed;
+                }
 
-    div.notes ol.notes li.note:first-child {
-      padding: 0 0 20px 0;
-    }
+                div.notes ol.notes li.note:first-child {
+                    padding: 0 0 20px 0;
+                }
 
-    div.notes ol.notes li.note .answer_content {
-      font-weight: normal;
-    }
+                div.notes ol.notes li.note .answer_content {
+                    font-weight: normal;
+                }
 
-    div.notes ol.notes li.note img.avatar {
-      vertical-align: -24px;
-      margin-right: 5px;
-    }
+                div.notes ol.notes li.note img.avatar {
+                    vertical-align: -24px;
+                    margin-right: 5px;
+                }
 
-    div.notes ol.notes li.note blockquote {
-      margin: 20px 0;
-    }
+                div.notes ol.notes li.note blockquote {
+                    margin: 20px 0;
+                }
 
-    div.notes ol.notes li.note blockquote a {
-      color: #000;
-      text-shadow: none;
-    }
+                    div.notes ol.notes li.note blockquote a {
+                        color: #000;
+                        text-shadow: none;
+                    }
 
     {CustomCSS}
-  </style>
+    </style>
 </head>
 
 <body>
-  <main id="wrapper">
+<main>
+
     <header>
-      <h1><a href="{BlogURL}">{Title}</a></h1>
-      <aside>
-        <ul>
-          {block:HasPages}{block:Pages}
-          <li><a href="{URL}">{Label}</a></li>
-          {/block:Pages}{/block:HasPages}
-          <li><a href="/archive">Archive</a></li>
-          {block:AskEnabled}
-          <li><a href="/ask">{AskLabel}</a></li>
-          {/block:AskEnabled}
-          <li><a href="https://sundaetimes-theme.tumblr.com">Theme</a></li>
-        </ul>
-      </aside>
+        <div>
+
+            <a href="{BlogURL}">
+                <h1>{Title}</h1>
+            </a>
+
+            <div id="description">{Description}</div>
+
+        </div>
+
+        <aside>
+            <ul>
+
+                {block:HasPages}
+                    {block:Pages}
+                        <li>
+                            <a href="{URL}">
+                                {Label}
+                            </a>
+                        </li>
+                    {/block:Pages}
+                {/block:HasPages}
+
+                <li>
+                    <a href="/archive">
+                        Archive
+                    </a>
+                </li>
+
+                {block:AskEnabled}
+                    <li>
+                        <a href="/ask">
+                            {AskLabel}
+                        </a>
+                    </li>
+                {/block:AskEnabled}
+
+                <li>
+                    <a href="https://sundaetimes-theme.tumblr.com">
+                        Theme
+                    </a>
+                </li>
+
+            </ul>
+        </aside>
+
     </header>
 
-    <div id="description">{Description}</div>
-
     {block:Posts}
-    <article>
+        <article class="{PostType}">
 
-      {block:Text}
-        {block:Title}
-          <h2>
-            {Title}
-          </h2>
-        {/block:Title}
-        <section>
-        {Body}
-      {/block:Text}
+<!-- TEXT POSTS -->
+            {block:Text}
 
-      {block:Photo}
-          {LinkOpenTag}
-            <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="single-photo" />
-          {LinkCloseTag}
-        {block:Caption}
-          <section>
-            {Caption}
-        {/block:Caption}
-      {/block:Photo}
+                {block:Title}
+                    <h2>
+                        {Title}
+                    </h2>
+                {/block:Title}
 
-      {block:Panorama}
-          <li class="post panorama">
-              {LinkOpenTag}
-                  <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
-              {LinkCloseTag}{block:Caption}
-                  <div class="caption">{Caption}</div>
-              {/block:Caption}
-          </li>
-      {/block:Panorama}
+                {block:NotReblog}
+                    <section class="{PostType} body">
+                        {Body}
+                    </section>
+                {/block:NotReblog}
 
-      {block:Photoset}
-        {Photoset-700}
-        {block:Caption}
-          <section>
-            {Caption}
-        {/block:Caption}
-      {/block:Photoset}
+            {/block:Text}
 
-      {block:Quote}
-        <h2 class="quote">
-          &#10077;{Quote}&#10078;
-        </h2>
-        {block:Source}
-          <section>
-            {Source}
-        {/block:Source}
-      {/block:Quote}
+<!-- PHOTO POSTS -->
 
-      {block:Link}
-        <h2>
-          <a href="{URL}">
-            {Name}
-          </a>
-        </h2>
-        {block:Description}
-          <section>
-            {Description}
-        {/block:Description}
-      {/block:Link}
+            {block:Photo}
 
-      {block:Answer}
-        <h2>
-          {Question}
-        </h2>
-        <section>
-          <p align="right">
-            -- a question from {Asker}{block:RebloggedFrom} to {Answerer}{/block:RebloggedFrom}
-          </p>
-          {Answer}
-        {/block:Answer}
+                {LinkOpenTag}
+                    <img
+                        src="{PhotoURL-HighRes}"
+                        alt="{PhotoAlt}"
+                        class="single-photo"
+                    />
+                {LinkCloseTag}
 
-      {block:Chat}
-        <div class="chat">
-          <ol class="convo">
-            {block:Lines}
-              <li class="{Alt} user_{UserNumber}">
-                {block:Label}
-                  <span class="name">
-                    {Label}
-                  </span>
-                {/block:Label}
-                {Line}
-              </li>
-            {/block:Lines}
-          </ol>
-        </div>
-      {/block:Chat}
+                {block:NotReblog}
+                    <section class="{PostType} caption">
+                        {Caption}
+                    </section>
+                {/block:NotReblog}
 
-      {block:Audio}
-        <h2>
-          {block:TrackName}{TrackName} {/block:TrackName}{block:Artist}by {Artist}{/block:Artist}
-        </h2>
-        {block:AlbumArt}
-          <img src="{AlbumArtURL}" class="album-art" />
-        {/block:AlbumArt}
-        <section>
-          <div class="player">
-            {block:AudioPlayer}{AudioPlayer}{/block:AudioPlayer}
-            {block:AudioEmbed}{AudioEmbed-640}{/block:AudioEmbed}
-          </div>
-          {block:Caption}
-            {Caption}
-          {/block:Caption}
-      {/block:Audio}
+            {/block:Photo}
 
-      {block:Video}
-        {Video-700}
-        {block:Caption}
-          <section>
-            {Caption}
-        {/block:Caption}
-      {/block:Video}
+<!-- PANORAMA POSTS -->
 
-      <!--BLOCK SOURCE LINKS-->
-      {block:ContentSource}
-        <!--
-        {SourceURL}
-          {block:SourceLogo}
-            <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
-          {/block:SourceLogo}
-          {block:NoSourceLogo}
-            {SourceLink}
-          {/block:NoSourceLogo}
-        -->
-      {/block:ContentSource}
-      {block:ReblogParent}{/block:ReblogParent}
+            {block:Panorama}
 
-      </section>
-    </article>
+                {LinkOpenTag}
+                    <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+                {LinkCloseTag}
 
-    {block:PermalinkPage}
-      <div class="notes">
-        {block:HasTags}
-          <ul class="tags">
-            {block:Tags}
-              <li>
-                <a href="{TagURL}">
-                  {Tag}
-                </a>
-              </li>
-            {/block:Tags}
-          </ul>
-        {/block:HasTags}
-        {block:PostNotes}
-          {PostNotes-64}
-        {/block:PostNotes}
-      </div>
-    {/block:PermalinkPage}
+                {block:NotReblog}
+                    <section class="{PostType} caption">
+                        {Caption}
+                    </section>
+                {/block:NotReblog}
+
+            {/block:Panorama}
+
+<!-- PHOTOSET POSTS -->
+
+            {block:Photoset}
+
+                {Photoset-700}
+
+                {block:NotReblog}
+                    <section class="{PostType} caption">
+                        {Caption}
+                    </section>
+                {/block:NotReblog}
+
+            {/block:Photoset}
+
+<!-- QUOTE POSTS -->
+
+            {block:Quote}
+                <h2 class="quote">
+                    &#10077;{Quote}&#10078;
+                </h2>
+
+                {block:Source}
+                    <section class="{PostType} source">
+                        {Source}
+                    </section>
+                {/block:Source}
+
+            {/block:Quote}
+
+<!-- LINK POSTS -->
+
+            {block:Link}
+
+                {block:Thumbnail}
+                    {Thumbnail-HighRes}
+                {/block:Thumbnail}
+
+                <h2>
+                    <a href="{URL}">
+                        {Name}
+                    </a>
+                </h2>
+
+                {block:Description}
+                    <section class="{PostType} description">
+                        {Description}
+                    </section>
+                {/block:Description}
+
+            {/block:Link}
+
+<!-- CHAT POSTS -->
+
+            {block:Chat}
+                <div class="chat">
+                    <ol class="convo">
+                        {block:Lines}
+                            <li class="{Alt} user_{UserNumber}">
+
+                                {block:Label}
+                                    <span class="name">
+                                        {Label}
+                                    </span>
+                                {/block:Label}
+
+                                {Line}
+
+                            </li>
+                        {/block:Lines}
+                    </ol>
+                </div>
+            {/block:Chat}
+
+<!-- AUDIO POSTS -->
+
+            {block:Audio}
+
+                {block:AudioPlayer}
+
+                    {block:AlbumArt}
+                        <img src="{AlbumArtURL}" class="album-art" />
+                    {/block:AlbumArt}
+
+                    {AudioPlayer}
+
+                {/block:AudioPlayer}
+
+
+                {block:NotReblog}
+                    {block:Caption}
+                        <section class="{PostType} caption">
+                            {Caption}
+                        </section>
+                    {/block:Caption}
+                {/block:NotReblog}
+
+            {/block:Audio}
+
+<!-- VIDEO POSTS -->
+
+            {block:Video}
+
+                {Video-700}
+
+                {block:NotReblog}
+                    {block:Caption}
+                        <section class="{PostType} caption">
+                            {Caption}
+                        </section>
+                    {/block:Caption}
+                {/block:NotReblog}
+
+            {/block:Video}
+
+<!-- ANSWER POSTS -->
+
+            {block:Answer}
+
+                <h2>
+                    {Question}
+                </h2>
+
+                <section>
+                    <p align="right">
+                        -- a question from {Asker}
+                        {block:RebloggedFrom} to {Answerer}{/block:RebloggedFrom}
+                    </p>
+
+                    {Answer}
+
+                </section>
+
+            {/block:Answer}
+
+<!-- REBLOGGED CONTENT -->
+            {block:Reblogs}
+
+                <section class="{PostType} {Username}">
+
+                    <a href="{Permalink}" class="reblogged-by">
+                        {Username}
+                    </a>
+
+                    {Body}
+
+                </section>
+
+            {/block:Reblogs}
+
+<!--BLOCK SOURCE LINKS-->
+{block:ContentSource}
+<!--
+{SourceURL}
+{block:SourceLogo}
+<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
+{/block:SourceLogo}
+{block:NoSourceLogo}
+{SourceLink}
+{/block:NoSourceLogo}
+-->
+{/block:ContentSource}
+{block:ReblogParent}{/block:ReblogParent}
+
+        </article>
+
+<!-- PERMALINK PAGES: NOTES SECTION -->
+
+        {block:PermalinkPage}
+
+            <div class="notes">
+
+                {block:HasTags}
+                    <ul class="tags">
+                        {block:Tags}
+                            <li>
+                                <a href="{TagURL}">
+                                    {Tag}
+                                </a>
+                            </li>
+                        {/block:Tags}
+                    </ul>
+                {/block:HasTags}
+
+                {block:PostNotes}
+                    {PostNotes-64}
+                {/block:PostNotes}
+
+            </div>
+        {/block:PermalinkPage}
 
     {/block:Posts}
 
+<!-- PAGINATION -->
+
     {block:Pagination}
-    <nav>
-      {block:PreviousPage}
-      <a href="{PreviousPage}">newer posts</a>
-      {/block:PreviousPage}
-      {block:NextPage}
-      <a href="{NextPage}">older posts</a>
-      {/block:NextPage}
-    </nav>
+
+        <nav>
+
+            {block:PreviousPage}
+                <a href="{PreviousPage}">newer posts</a>
+            {/block:PreviousPage}
+
+            {block:NextPage}
+                <a href="{NextPage}">older posts</a>
+            {/block:NextPage}
+
+        </nav>
+
     {/block:Pagination}
 
-  </main>
+</main>
 </body>
 </html>
